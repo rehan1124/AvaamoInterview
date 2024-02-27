@@ -25,7 +25,7 @@ class TestAvaamo(Base):
             home_obj.switch_to_agent_frame()
 
         with check:
-            home_obj.validate_agent_screen_msg("Please enter your details to proceed")
+            assert home_obj.validate_agent_screen_msg("Please enter your details to proceed")
         home_obj.enter_email("abc@gmail.com")
         home_obj.enter_first_name("Avaamo AI")
         home_obj.click_next_button()
