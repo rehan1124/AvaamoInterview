@@ -1,5 +1,7 @@
+import allure
 import pytest
 from selenium import webdriver
+
 from utils.utils import read_env_config
 
 
@@ -8,6 +10,7 @@ def pytest_addoption(parser):
 
 
 @pytest.fixture()
+@allure.title("--- Open browser ---")
 def setup(request):
     url = str(read_env_config("QA", "url"))
     implicit_wait = read_env_config("QA", "implicit_wait")

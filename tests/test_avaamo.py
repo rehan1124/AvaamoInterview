@@ -1,12 +1,17 @@
-import time
+import allure
 from pytest_check import check
 from selenium.common import NoSuchFrameException
 
+from pages.base import Base
 from pages.home import Home
-from tests.base import Base
 
 
 class TestAvaamo(Base):
+    @allure.story("Avaamo AI agent")
+    @allure.title("Tests basic AI agent details input.")
+    @allure.description(
+        "This test attempts to log into the website, click on the AI agent button.\n\n"
+        "Enter basic details.")
     def test_login_screen(self):
         home_obj = Home(self.driver)
         home_obj.open_chat_agent()
@@ -24,4 +29,4 @@ class TestAvaamo(Base):
         home_obj.enter_email("abc@gmail.com")
         home_obj.enter_first_name("Avaamo AI")
         home_obj.click_next_button()
-        time.sleep(10)
+        # assert False, "Failing the test intentionally."
