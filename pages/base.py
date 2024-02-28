@@ -2,7 +2,7 @@ import allure
 import pytest
 
 
-@pytest.mark.usefixtures("setup")
+@pytest.mark.usefixtures("setup", "capture_screenshot")
 class Base:
     def take_screenshot(func):
         def wrapper(self, *args, **kwargs):

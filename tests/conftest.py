@@ -31,3 +31,17 @@ def setup(request):
     request.cls.driver = driver
     yield driver
     driver.quit()
+
+
+@pytest.fixture()
+def capture_screenshot(request, setup):
+    yield
+    if request.session.testsfailed > 0:
+        try:
+            allure.attach(
+                setup.get_screenshot_as_png(),
+                name="FailedStep",
+                attachment_type=allure.attachment_type.PNG
+            )
+        except Exception as e:
+            print(f"Failed to capture and attach screenshot: {e}")

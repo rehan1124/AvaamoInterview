@@ -40,10 +40,10 @@ class TestAvaamo(Base):
 
         home_obj.enter_query("I want to order a pizza")
 
-        # with check:
-        #     assert home_obj.validate_last_agent_msg(
-        #         "We have a wide variety of freshly backed pizza . What would you like to Order ?")
-        # time.sleep(5)
+        time.sleep(5)
+        with check:
+            assert home_obj.validate_last_agent_msg(
+                "We have a wide variety of freshly backed pizza . What would you like to Order ?")
 
         home_obj.select_pizza_type("non-veg")
         # assert False, "Failing the test intentionally."

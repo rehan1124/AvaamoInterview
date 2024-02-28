@@ -32,7 +32,7 @@ class Home:
     @Base.take_screenshot
     def validate_welcome_msg(self, message):
         retrieved_msg = self.driver.find_element(By.CSS_SELECTOR, self._welcome_msg_text).text
-        print(retrieved_msg)
+        print(f"Validate message `{retrieved_msg}` is displayed")
         return retrieved_msg == message
 
     @Base.take_screenshot
@@ -46,14 +46,17 @@ class Home:
     @Base.take_screenshot
     def validate_agent_screen_msg(self, message):
         retrieved_msg = self.driver.find_element(By.CSS_SELECTOR, self._chat_agent_details_msg).text
+        print(f"Validate message `{retrieved_msg}` is displayed")
         return retrieved_msg == message
 
     @Base.take_screenshot
     def enter_first_name(self, firstname):
+        print(f"Enter name `{firstname}`")
         self.driver.find_element(By.ID, self._first_name_id).send_keys(firstname)
 
     @Base.take_screenshot
     def enter_email(self, email):
+        print(f"Enter email `{email}`")
         self.driver.find_element(By.ID, self._email_id).send_keys(email)
 
     @Base.take_screenshot
@@ -63,7 +66,7 @@ class Home:
     @Base.take_screenshot
     def validate_success_message_after_login(self, message):
         actual_msg = self.driver.find_element(By.CSS_SELECTOR, self._login_success_msg_css).text
-        print(actual_msg)
+        print(f"Validate success message `{message}` is displayed")
         return actual_msg == message
 
     @Base.take_screenshot
@@ -72,23 +75,24 @@ class Home:
 
     @Base.take_screenshot
     def enter_query(self, query):
-        print(query)
+        print(f"Enter query `{query}`")
         self.driver.find_element(By.ID, self._msg_query_id).send_keys(query)
         self.driver.find_element(By.ID, self._msg_query_id).send_keys(Keys.ENTER)
 
     @Base.take_screenshot
     def validate_last_agent_msg(self, message):
         actual_msg = self.driver.find_element(By.XPATH, self._latest_agent_msg_xpath).text
-        print(actual_msg)
+        print(f"Validate message `{message}` is displayed")
         return actual_msg == message
 
     @Base.take_screenshot
     def select_pizza_type(self, pizza_type):
-        print(pizza_type)
+        print(f"Select `{pizza_type}` pizza")
         self.driver.find_element(By.CSS_SELECTOR, f"[title='{pizza_type}']").click()
 
     @Base.take_screenshot
     def select_toppings(self, topping):
+        print(f"Select `{topping}` topping")
         if topping == "bacon":
             self.driver.find_element(By.CSS_SELECTOR, self._bacon_topping_css).click()
         if topping == "Pepperoni":
