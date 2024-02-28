@@ -1,4 +1,5 @@
 import allure
+import pytest
 from pytest_check import check
 from selenium.common import NoSuchFrameException
 
@@ -12,6 +13,7 @@ class TestAvaamo(Base):
     @allure.description(
         "This test attempts to log into the website, click on the AI agent button.\n\n"
         "Enter basic details.")
+    @pytest.mark.smoke
     def test_login_screen(self):
         home_obj = Home(self.driver)
         home_obj.open_chat_agent()
