@@ -1,5 +1,6 @@
 import allure
 import pytest
+import time
 from pytest_check import check
 from selenium.common import NoSuchFrameException
 
@@ -28,7 +29,21 @@ class TestAvaamo(Base):
 
         with check:
             assert home_obj.validate_agent_screen_msg("Please enter your details to proceed")
+
         home_obj.enter_email("abc@gmail.com")
         home_obj.enter_first_name("Avaamo AI")
         home_obj.click_next_button()
+
+        with check:
+            assert home_obj.validate_success_message_after_login("Welcome to McPizza Booking Journey")
+            assert home_obj.validate_welcome_img_presence()
+
+        home_obj.enter_query("I want to order a pizza")
+
+        # with check:
+        #     assert home_obj.validate_last_agent_msg(
+        #         "We have a wide variety of freshly backed pizza . What would you like to Order ?")
+        # time.sleep(5)
+
+        home_obj.select_pizza_type("non-veg")
         # assert False, "Failing the test intentionally."
