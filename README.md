@@ -1,5 +1,17 @@
 # AvaamoInterview
 
+### Following is the structure of project
+
+| Folder / Directory | Purpose                                                             |
+|--------------------|---------------------------------------------------------------------|
+| envconfig          | Holds `config.ini` file for configuration related things            |
+| pages              | Base class + Page-object classes                                    |
+| Reports            | Allure report is generated here                                     |
+| tests              | Automated tests are stored in this package                          |
+| utils              | Utilities such as reading config file or excel file are stored here |
+
+### To get started, go step-by-step as mentioned below
+
 * Clone the GitHub repo
 * Navigate to directory/project and run command `python -m venv venv` for creating virtual environment, activate
   using `venv\Scripts\activate`
@@ -8,3 +20,6 @@
 * Generate Allure-reports using command `allure serve Reports` after test run finishes.
 * Drill down to any test and on the right-side you will see screenshots attached for each and every step. This is done
   using decorators in `pages` directory page-object model classes.
+* Framework also supports adding pytest markers `pytest -m smoke` or `pytest -m regression`. As of now, you can use
+  tags `smoke` and `regression` for test
+  classification purpose.
