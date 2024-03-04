@@ -35,7 +35,8 @@ class TestAvaamo(Base):
         home_obj.click_next_button()
 
         with check:
-            assert home_obj.validate_success_message_after_login("Welcome to McPizza Booking Journey")
+            # assert home_obj.validate_success_message_after_login("Welcome to McPizza Booking Journey")
+            assert home_obj.validate_chat_msg("Welcome to McPizza Booking Journey")
             assert home_obj.validate_welcome_img_presence()
 
         home_obj.enter_query("I want to order a pizza")
@@ -46,4 +47,13 @@ class TestAvaamo(Base):
                 "We have a wide variety of freshly backed pizza . What would you like to Order ?")
 
         home_obj.select_pizza_type("non-veg")
-        # assert False, "Failing the test intentionally."
+        home_obj.select_toppings("bacon")
+        home_obj.submit_request()
+
+        # time.sleep(5)
+        with check:
+            assert home_obj.topping_success_msg("Submitted successfully")
+            assert home_obj.validate_chat_msg("Great ! You have Selected bacon")
+
+        home_obj.choose_crust("Thin")
+        home_obj.click_send_button()

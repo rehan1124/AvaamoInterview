@@ -1,6 +1,7 @@
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 
+from app_exceptions.UserDefinedExceptions import InvalidToppings, InvalidCrustSelected
 from pages.base import Base
 
 
@@ -24,6 +25,10 @@ class Home:
     _bacon_topping_css = "[value='bacon_id']"
     _pepperoni_topping_css = "[value='pepperoni_id']"
     _submit_btn_xpath = "//button[text()='Submit' and @class='btn default_card_submit']"
+    _topping_success_msg_css = "button[class='btn default_card_submit success']"
+    _thin_crust_css = "img[alt='Thin Crust']"
+    _thick_crust_css = "img[alt='Thick Crust']"
+    _send_btn_xpath = "//button[text()='Send']"
 
     @Base.take_screenshot
     def open_chat_agent(self):
@@ -95,9 +100,33 @@ class Home:
         print(f"Select `{topping}` topping")
         if topping == "bacon":
             self.driver.find_element(By.CSS_SELECTOR, self._bacon_topping_css).click()
-        if topping == "Pepperoni":
+        elif topping == "Pepperoni":
             self.driver.find_element(By.CSS_SELECTOR, self._pepperoni_topping_css).click()
+        else:
+            raise InvalidToppings("Invalid topping selected.")
 
     @Base.take_screenshot
     def submit_request(self):
         self.driver.find_element(By.XPATH, self._submit_btn_xpath).click()
+
+    @Base.take_screenshot
+    def topping_success_msg(self, expected_msg):
+        actual_msg = self.driver.find_element(By.CSS_SELECTOR, self._topping_success_msg_css).text
+        return actual_msg == expected_msg
+
+    @Base.take_screenshot
+    def choose_crust(self, crust_type):
+        if crust_type == "Thin":
+            self.driver.find_element(By.CSS_SELECTOR, self._thin_crust_css).click()
+        elif crust_type == "Thick":
+            self.driver.find_element(By.CSS_SELECTOR, self._thick_crust_css).click()
+        else:
+            raise InvalidCrustSelected("Please select `Thin` or `Thick`.")
+
+    @Base.take_screenshot
+    def click_send_button(self):
+        self.driver.find_element(By.XPATH, self._send_btn_xpath).click()
+
+    @Base.take_screenshot
+    def validate_chat_msg(self, message):
+        return self.driver.find_element(By.XPATH, f"//p[text()='{message}']").is_displayed()
