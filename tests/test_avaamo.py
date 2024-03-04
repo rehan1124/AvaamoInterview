@@ -44,7 +44,7 @@ class TestAvaamo(Base):
         time.sleep(5)
         with check:
             assert home_obj.validate_last_agent_msg(
-                "We have a wide variety of freshly backed pizza . What would you like to Order ?")
+                "W have a wide variety of freshly backed pizza . What would you like to Order ?")
 
         home_obj.select_pizza_type("non-veg")
         home_obj.select_toppings("bacon")
