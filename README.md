@@ -9,6 +9,8 @@
 | Reports            | Allure report is generated here                                     |
 | tests              | Automated tests are stored in this package                          |
 | utils              | Utilities such as reading config file or excel file are stored here |
+| app_exceptions     | Custom exceptions are defined here                                  |
+| README_IMAGES      | README file specific images                                         |
 
 ### To get started, go step-by-step as mentioned below
 
