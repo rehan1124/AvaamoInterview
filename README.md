@@ -40,3 +40,6 @@
 ![FailingTestScreenshot.png](README_IMAGES%2FFailingTestScreenshot.png)
 
 ![FailingTestScreenshot2.png](README_IMAGES%2FFailingTestScreenshot2.png)
+
+* `pytest` also supports running just the failed tests. Use command `pytest -v -s --lf` to run the test failed last
+  time.
