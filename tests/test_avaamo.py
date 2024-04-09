@@ -13,7 +13,8 @@ class TestAvaamo(Base):
     @allure.title("Tests basic AI agent details input.")
     @allure.description(
         "This test attempts to log into the website, click on the AI agent button.\n\n"
-        "Enter basic details.")
+        "Enter basic details."
+    )
     @pytest.mark.smoke
     def test_login_screen(self):
         home_obj = Home(self.driver)
@@ -28,7 +29,9 @@ class TestAvaamo(Base):
             home_obj.switch_to_agent_frame()
 
         with check:
-            assert home_obj.validate_agent_screen_msg("Please enter your details to proceed")
+            assert home_obj.validate_agent_screen_msg(
+                "Please enter your details to proceed"
+            )
 
         home_obj.enter_email("abc@gmail.com")
         home_obj.enter_first_name("Avaamo AI")
@@ -44,7 +47,8 @@ class TestAvaamo(Base):
         time.sleep(5)
         with check:
             assert home_obj.validate_last_agent_msg(
-                "We have a wide variety of freshly backed pizza . What would you like to Order ?")
+                "We have a wide variety of freshly backed pizza . What would you like to Order ?"
+            )
 
         home_obj.select_pizza_type("non-veg")
         home_obj.select_toppings("bacon")
